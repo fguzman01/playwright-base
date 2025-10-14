@@ -1,0 +1,29 @@
+{
+  "name": "playwright-base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+    "scripts": {
+      "test": "npx playwright test",
+      "test:headed": "npx playwright test --headed",
+      "report": "npx playwright show-report"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fguzman01/playwright-base.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fguzman01/playwright-base/issues"
+  },
+  "homepage": "https://github.com/fguzman01/playwright-base#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "allure-playwright": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

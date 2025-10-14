@@ -1,0 +1,38 @@
+# Node dependencies
+node_modules/
+
+# Build outputs
+/dist/
+/out/
+
+# Playwright
+/test-results/
+/playwright-report/
+.playwright/
+
+# Allure reports
+/reports/
+/allure-results/
+/allure-report/
+
+# Environment and configs
+.env
+.env.*
+
+# Logs
+/logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+/coverage/
