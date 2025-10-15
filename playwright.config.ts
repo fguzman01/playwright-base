@@ -14,7 +14,13 @@ export default defineConfig({
   retries: 0,
 
   // Reporters para mostrar resultados y generar reportes Allure
-  reporter: [['list'], ['allure-playwright']],
+   reporter: [
+  ['list'],
+  ['allure-playwright', {
+    suiteTitle: false,
+    detail: true
+  }]
+],
 
   // Configuración global para todos los tests
   use: {

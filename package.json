@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-    "scripts": {
-      "test": "npx playwright test",
-      "test:headed": "npx playwright test --headed",
-      "report": "npx playwright show-report"
-    },
+  "scripts": {
+   "test": "npx playwright test",
+   "test:headed": "npx playwright test --headed",
+   "report:pw": "npx playwright show-report",
+   "allure:serve": "allure serve allure-results"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fguzman01/playwright-base.git"

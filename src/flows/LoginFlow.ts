@@ -1,6 +1,7 @@
 import { Page } from '@playwright/test';
 import { WebUtils } from '../utils/WebUtils';
 import { LoginPage } from '../pages/LoginPage';
+import { step, attachment } from "allure-js-commons";
 
 // Flow base para el proceso de login
 export class LoginFlow {
@@ -13,14 +14,19 @@ export class LoginFlow {
   }
 
   /**
-   * Abre la página de login y verifica que esté cargada correctamente
-   */
-  async openLoginPageAndVerify(): Promise<void> {
-    // Navega a la URL base
+ * Abre la página de login y verifica que esté cargada correctamente
+ */
+async openLoginPageAndVerify(): Promise<void> {
+  await step("Abrir la página de login", async () => {
     await WebUtils.navigateTo(this.page);
-    // Verifica que la página de login esté visible
+  });
+
+  await step("Verificar que la página de login esté visible", async () => {
     await this.loginPage.verifyLoginPageIsVisible();
-    // Log: flujo completado
-    console.log('[FLOW] Login page abierta y verificada');
-  }
+    const screenshot = await this.page.screenshot();
+    await attachment("Carga correcta de la pagina", screenshot, "image/png");
+  });
+
+  console.log('[FLOW] Login page abierta y verificada');
+}
 }

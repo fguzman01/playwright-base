@@ -47,7 +47,10 @@ export class WebUtils {
     console.log(`[NAVIGATE] Abriendo URL: ${url}`);
     try {
       await page.goto(url, { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle');
+      console.log(`[NAVIGATE ✅] Página cargada correctamente`);
     } catch (error) {
+      console.error(error);
       throw new Error(`[NAVIGATE ❌] Error al abrir la URL: ${url}`);
     }
   }
