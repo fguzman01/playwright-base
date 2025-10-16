@@ -2,6 +2,58 @@ import { Page, Locator } from '@playwright/test';
 import { ENV } from '../config/env.config';
 
 export class WebUtils {
+
+  /**
+   * Realiza un clic seguro en un elemento, esperando visibilidad y logueando
+   * @param page Instancia de Playwright Page
+   * @param locator Locator del elemento a hacer clic
+   * @param timeoutMs Tiempo máximo de espera en ms (opcional)
+   */
+  static async safeClick(page: Page, locator: Locator, timeoutMs?: number): Promise<void> {
+    // Log: inicio del clic
+    console.log(`[CLICK] Intentando hacer clic en: ${locator}`);
+    try {
+      // Espera a que el elemento sea visible
+      await WebUtils.waitForElement(page, locator, timeoutMs);
+      // Realiza el clic
+      await locator.click();
+      // Log: éxito
+      console.log(`[CLICK ✅] Clic realizado en: ${locator}`);
+    } catch (error) {
+      // Log: error
+      console.error(`[CLICK ❌] Error al hacer clic en: ${locator}`);
+      throw new Error(`No se pudo hacer clic en el elemento '${locator}'. Detalle: ${error}`);
+    }
+  }
+  /**
+   * Rellena un campo de texto de forma segura, esperando visibilidad y con logs
+   * @param page Instancia de Playwright Page
+   * @param locator Locator del input a rellenar
+   * @param value Valor a ingresar
+   * @param clearFirst Si true, limpia el campo antes de escribir (default: true)
+   * @param timeoutMs Tiempo máximo de espera en ms (opcional)
+   */
+  static async fillInput(page: Page, locator: Locator, value: string, clearFirst: boolean = true, timeoutMs?: number): Promise<void> {
+    // Log: inicio del llenado
+    console.log(`[FILL] Rellenando campo: ${locator} con valor: "${value}"`);
+    try {
+      // Espera a que el input sea visible
+      await WebUtils.waitForElement(page, locator, timeoutMs);
+      // Limpia el campo si se indica
+      if (clearFirst) {
+        await locator.fill('');
+      }
+      // Ingresa el valor
+      await locator.fill(value);
+      // Log: éxito
+      console.log(`[FILL ✅] Campo rellenado: ${locator} con valor: "${value}"`);
+    } catch (error) {
+      // Log: error
+      console.log(`[FILL ❌] Error al rellenar el campo: ${locator} con valor: "${value}"`);
+      throw new Error(`No se pudo rellenar el campo '${locator}' con valor '${value}'. Detalle: ${error}`);
+    }
+  }
+  
   
   
   /**
